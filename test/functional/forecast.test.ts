@@ -1,4 +1,19 @@
+import { Beach } from '@src/models/beach';
+import { BeachPosition } from '@src/services/forecast';
+
 describe('Beach forecast function tests', () => {
+  beforeEach(async () => {
+    await Beach.deleteMany({});
+    const defaultBeach = {
+      lat: -33.792726,
+      lng: 151.289824,
+      name: 'Manly',
+      position: BeachPosition.E,
+    };
+
+    const beach = new Beach(defaultBeach);
+    await beach.save();
+  });
   it('should return a forecast with just a few times', async () => {
     const { body, status } = await global.testRequest.get('/forecast');
     expect(status).toBe(200);

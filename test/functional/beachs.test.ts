@@ -34,7 +34,7 @@ describe('Beaches functional tests', () => {
     });
 
     it.skip('should return 500 when there is any error other than validation error', async () => {
-      //TODO
+      throw new Error('Internal Server Error');
     });
   });
 });
